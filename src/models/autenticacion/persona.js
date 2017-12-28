@@ -118,12 +118,6 @@ module.exports = (sequelize, DataType) => {
   }, {
     createdAt: '_fecha_creacion',
     updatedAt: '_fecha_modificacion',
-    classMethods: {
-      // Creando asociaciones para la persona
-      associate: (models) => {
-        persona.hasMany(models.representante, { as: 'persona', foreignKey: { name: 'fid_persona', allowNull: false } });
-      },
-    },
     tableName: 'persona',
   });
 
