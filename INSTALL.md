@@ -1,15 +1,6 @@
-# Registro de empresas - YURINIA (BACKEND)
+# EXAMEN AGETIC (BACKEND)
 
-Antes de instalar el backend del proyecto registro de empresas, se debe instalar:
-
-#### - El servicio de motor de búsquedas (elasticsearch), logstash y mysql
-  Puede revisar la siguiente configuración en [ELASTICSEARCH](https://gitlab.geo.gob.bo/agetic/analizador-fonetico/blob/master/INSTALL_ELASTICSEARCH.md)
-#### - El servicio de Homonima 
-  Puede revisar la siguiente configuración en [HOMONIMIA](https://gitlab.geo.gob.bo/agetic/analizador-fonetico/blob/master/INSTALL.md)
-#### - EL frontend de registro de empresas
-  puede revisar la siguiente configuración en [FRONTEND](https://gitlab.geo.gob.bo/agetic/registro-empresas-frontend/blob/master/INSTALL.md)
-
-Luego de ejecutar las instrucciones para instalar el gestor de base de datos `postgres` descritos paso a paso en el archivo ([SERVER.md](SERVER.md)).
+Antes de instalar el backend del examen de la agetic se debe realizar los siguiente:
 
 #### Pasos para instalar GIT
 
@@ -27,25 +18,10 @@ SSL connection (protocol: TLSv1.2, cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 25
 Type "help" for help.
 
 postgres=#
-```
-Crear un usuario que adiministre la base de datos del sistema:
-```sh
-postgres=# CREATE USER user_yurinia WITH PASSWORD 'user_yurinia';
-CREATE ROLE
-```
-Para verificar que el usuario se creó correctamente:
-```sh
-postgres=# \du
-Role name   |                         Attributes                         | Member of
----------------+------------------------------------------------------------+-----------
-postgres      | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
-user_yurinia |                                                            | {}
-
-```
 
 Luego creamos la base de datos:
 ```sh
-postgres=# CREATE DATABASE yurinia_db WITH OWNER user_yurinia;
+postgres=# CREATE DATABASE examen WITH OWNER postgres;
 CREATE DATABASE
 ```
 Para verificar que la base de datos se creó correctamente:
@@ -55,7 +31,7 @@ postgres=# \l
 Name           |     Owner     | Encoding |   Collate   |    Ctype    |   Access privileges   
 --------------------------+---------------+----------+-------------+-------------+-----------------------
 
-yurinia_db              | postgres      | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+examen              | postgres      | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
 
 
 template0                | postgres      | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
@@ -64,61 +40,23 @@ template1                | postgres      | UTF8     | en_US.UTF-8 | en_US.UTF-8 
 |               |          |             |             | postgres=CTc/postgres
 (1 rows)
 
-```
-Asignamos todos los privilegios al usuario creado:
-```sh
-postgres=# GRANT ALL PRIVILEGES ON DATABASE yurinia_db to user_yurinia;
-GRANT
-```
-Para verificar esta asignación de privilegios:
-```sh
-postgres=# \l
-                                      List of databases
-Name           |     Owner     | Encoding |   Collate   |    Ctype    |        Access privileges        
---------------------------+---------------+----------+-------------+-------------+---------------------------------
-
-yurinia_db | user_yurinia | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =Tc/user_yurinia              +
-|               |          |             |             | user_yurinia=CTc/user_yurinia
-template0                | postgres      | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres                    +
-|               |          |             |             | postgres=CTc/postgres
-template1                | postgres      | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres                    +
-|               |          |             |             | postgres=CTc/postgres
-(1 rows)
-
-```
-
 Para salir de la consola de postgres
 
 ```sh
 postgres=# \q
 ```
 
-### Comandos para eliminar bases de datos y usuarios
-
-Para eliminar la base de datos creada o el usuario se digitan estas lineas de código en la terminal abierta de postgres
-```sh
-postgres=# DROP DATABASE yurinia_db;
-DROP DATABASE
-
-```
-```sh
-postgres=# DROP USER user_yurinia;
-DROP ROLE
-
-```
-
-
 #### Instalación
 
-Para instalar el proyecto debemos clonarlo desde nuestro repositorio:
+Para instalar el proyecto debemos clonarlo desde nuestro repositorio o si es que se paso en un archivo compreso de tipo zip u otro desconprimirlo:
 
 ```sh
-$ git clone git@gitlab.geo.gob.bo:agetic/registro-empresas-backend.git
+$ git clone git@gitlab.geo.gob.bo:agetic/[$nombreRepositorio].git
 ```
 
 Ingresar a la carpeta:
 ```sh
-$ cd registro-empresas-backend
+$ cd backend
 ```
 Podemos verificar que estamos en el branch master:
 
@@ -156,11 +94,11 @@ $ npm install
 
 #### Archivos de Configuración
 
-Para modificar los datos de conexión a la base de datos y para modificar el puerto de conexión de **desarrollo** realizar una copia del archivo `src/config/config.environment.js.sample` y cambiar los datos de conexión a la base de datos respectiva, el archivo debería ser nombrado de la siguiente manera:
+Para modificar los datos de conexión a la base de datos y para modificar el puerto de conexión de **desarrollo** realizar una copia del archivo `src/config/config.environment.js` y cambiar los datos de conexión a la base de datos respectiva, el archivo debería ser nombrado de la siguiente manera:
 
 - `src/config/config.development.js`
 
-Para modificar los datos de conexión a la base de datos y para modificar el puerto de conexión de **test** realizar una copia del archivo `src/config/config.environment.js.sample` y cambiar los datos de conexión a la base de datos respectiva, el archivo debería ser nombrado de la siguiente manera:
+Para modificar los datos de conexión a la base de datos y para modificar el puerto de conexión de **test** realizar una copia del archivo `src/config/config.environment.js` y cambiar los datos de conexión a la base de datos respectiva, el archivo debería ser nombrado de la siguiente manera:
 
 - `src/config/config.test.js`
 

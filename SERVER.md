@@ -106,11 +106,6 @@ Instalar build essentials
 $ sudo apt-get install build-essential libssl-dev
 ```
 
-## Generación de reportes PDF
-```sh
-$ sudo apt-get install libfontconfig1
-```
-
 ## GIT
 Para la instalación de git se siguieron algunas instrucciones de la siguiente página:
 
@@ -240,23 +235,3 @@ $ npm install --global sequelize sequelize-cli
 $ npm install --global pg pg-hstore
 $ npm install --global nodemon
 ```
-
-## Instalación necesaria para pruebas
-
-Para ejecutar los tests, necesitamos instalar mocha de manera global:
-```
-$ npm install -g mocha
-```
-
-## Automatización de procesos
-Para automatizar la ejecución de la aplicación se utilizó **Supervisor**.
-
-```sh
-$ sudo apt-get install supervisor
-```
-Para probar la correcta instalación del servicio se puede ejecutar el siguiente comando:
-```sh
-$ sudo /etc/init.d/supervisor restart
-```
-El servicio debería reiniciarse sin problemas.
-
