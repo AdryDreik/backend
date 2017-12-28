@@ -86,7 +86,7 @@ module.exports = (app) => {
         const RolRuta = app.src.db.models.rol_ruta;
         const Ruta = app.src.db.models.ruta;
         // Middlewares modificado para las rutas de actualizacion de estado
-        if (req.path.includes('/presentar') || req.path.includes('/observar') || req.path.includes('/abrobar') || req.path.includes('/autenticar')) {
+        if (req.path.includes('/autenticar')) {
           // check header or url parameters or post parameters for token
           const token = req.headers.authorization.split(' ')[1];
           // decode token
